@@ -30,27 +30,33 @@ public class Table {
        return column;
     }
 
-    public Square[] getRow(int index){
-        Square[] row = new Square[3];
-        for(int i=0;i<3;i++){
-            row[i] = new Square();
-            row[i].value = this.squares[i+(3*(index-1))].value;
-        }
+    public List<Square> getRow(int index){
+        List<Square> row = new ArrayList<>();
+
+        row.add(this.squares[(index-1)*3]);
+        row.add(this.squares[(((index-1)*3)+1)]);
+        row.add(this.squares[(((index-1)*3)+2)]);
+
         return row;
     }
 
     public boolean checkPossibility(int value, int rowIndex, int columnIndex) {
-        Square[] row = new Square[3];
+        List<Square> row = new ArrayList<>();
         row = getRow(rowIndex);
         List<Square> column = new ArrayList<>();
         column = getColumn(columnIndex);
-        if (checkPossibilityInRow(row, value) && checkPossibilityInColumn(column, value) && checkPossibilityInTable(this.squares,value)) {
+        if (    checkPossibilityInRow(row, value) &&
+                checkPossibilityInColumn(column, value) &&
+                checkPossibilityInTable(this.squares,value)) {
+
             return true;
         }
         else return false;
     }
 
-    private boolean checkPossibilityInRow(Square[] row,int value) {
+    private boolean checkPossibilityInRow(List<Square> list,int value) {
+        Square[] row = new Square[3];
+        list.toArray(row);
         for (int i = 0; i < 3; i++) {
             if (row[i].value == value) {
                 return false;
@@ -70,7 +76,7 @@ public class Table {
         return true;
     }
 
-    private boolean checkPossibilityInTable(Square[] table, int value){
+    public boolean checkPossibilityInTable(Square[] table, int value){
         for(int i=0;i<9;i++){
             if(table[i].value == value){
                 return false;
@@ -81,7 +87,7 @@ public class Table {
 
     public int setValue(int value, int row, int column) {
             if (checkPossibility(value, row, column)) {
-                this.squares[getPosition(row,column)].value = value;
+                this.squares[getPosition(row,column)-1].value = value;
                 return value;
             }
 

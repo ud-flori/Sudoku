@@ -12,18 +12,16 @@ public class SudokuTest {
     @Test
     public void testOfGetColumnFunction(){
         Sudoku sudoku = new Sudoku();
-        sudoku.tables[2].setValue(6,1,3);
-        Square[] test = new Square[9];
-        test[0] = new Square(2);
-        test[1] = new Square(4);
-        test[2] = new Square(5);
-        test[3] = new Square(1);
-        test[4] = new Square(0);
-        test[5] = new Square(6);
-        test[6] = new Square(8);
-        test[7] = new Square(9);
-        test[8] = new Square(3);
-        assertEquals(0,sudoku.getColumn(8)[2].value);
+        assertEquals(2, sudoku.setValue(2,4,6));
+        assertEquals(0, sudoku.setValue(2,4,3));
+        assertEquals(0, sudoku.setValue(2,5,5));
+        assertEquals(7, sudoku.setValue(7,5,5));
+        assertEquals(8, sudoku.setValue(8,5,6));
+        assertEquals(0, sudoku.setValue(8,4,4));
+        assertEquals(0, sudoku.setValue(8,1,6));
+        assertEquals(0, sudoku.setValue(7,9,5));
+
+
 
     }
 

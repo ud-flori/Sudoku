@@ -14,7 +14,7 @@ public class SquareTest {
         Square square = new Square();
         assertNotNull(square);
         Square test = new Square(4);
-        assertEquals(1,test);
+        assertEquals(4,test.value);
     }
 
     @Test
