@@ -60,6 +60,24 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M5</version>
+            <type>maven-plugin</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+            <version>3.0.0-M5</version>
+            <type>maven-plugin</type>
+        </dependency>
+        <dependency>
+            <groupId>org.openclover</groupId>
+            <artifactId>clover-maven-plugin</artifactId>
+            <version>4.2.0</version>
+            <type>maven-plugin</type>
+        </dependency>
+        <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.el</artifactId>
             <version>3.0.1-b11</version>
@@ -129,6 +147,19 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.openclover</groupId>
+                <artifactId>clover-maven-plugin</artifactId>
+                <version>4.4.1</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>instrument</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
@@ -181,20 +212,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>3.1.2</version>
                 <dependencies>
                     <dependency>
                         <groupId>com.puppycrawl.tools</groupId>
                         <artifactId>checkstyle</artifactId>
-                        <version>8.19</version>
+                        <version>8.29</version>
                     </dependency>
                 </dependencies>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M4</version>
-            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -228,19 +255,14 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.openclover</groupId>
-                <artifactId>clover-maven-plugin</artifactId>
-                <version>4.4.1</version>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>instrument</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
             </plugin>
-        </plugins>
+    </plugins>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -252,13 +274,18 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.0.0-M5</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.0.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>3.1.2</version>
                 <configuration>
                     <configLocation>checkstyle.xml</configLocation>
                 </configuration>
@@ -268,21 +295,13 @@
                 <artifactId>maven-jxr-plugin</artifactId>
                 <version>3.0.0</version>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>3.0.0-M4</version>
-            </plugin>
+
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.5</version>
             </plugin>
-            <plugin>
-                <groupId>org.openclover</groupId>
-                <artifactId>clover-maven-plugin</artifactId>
-                <version>4.4.1</version>
-            </plugin>
+
         </plugins>
     </reporting>
 </project>
