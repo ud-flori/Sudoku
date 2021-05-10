@@ -1,31 +1,34 @@
 package sudoku;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
-import sudoku.Square;
+
 
 import static org.junit.Assert.*;
 
 public class SquareTest {
 
     @Test
-    public void testOfConstructor(){
+    public void testTheConstructor(){
 
-        Square square = new Square();
-        assertNotNull(square);
-        Square test = new Square(4);
-        assertEquals(4,test.value);
+        Square firstTest = new Square();
+        Square secondTest = new Square(4);
+        Square thirdTest = new Square(-5);
+        Square fourthTest = new Square(12);
+        assertEquals(0, firstTest.value);
+        assertEquals(4, secondTest.value);
+        assertEquals(0, thirdTest.value);
+        assertEquals(0, fourthTest.value);
     }
 
     @Test
-    public void testOfGetValue(){
+    public void testTheGetValueMethod(){
 
         Square test = new Square(5);
-        assertEquals(5,test.getValue());
+        assertEquals(test.value,test.getValue());
     }
 
     @Test
-    public void tesingSetValueMethod(){
+    public void testTheSetValueMethod(){
 
         Square test = new Square();
         assertEquals(3,test.setValue(3));

@@ -1,56 +1,122 @@
 package sudoku;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 public class TableTest{
 
     @Test
-    public void testConstructorCorrectness(){
-       Table table = new Table();
-       assertEquals(0,table.squares[4].value);
+    public void testTheConstructor(){
+       Table test = new Table();
+
+       Assertions.assertEquals(0,test.squares[4].value);
     }
 
-    //@Test
-    /*public void testGetColumnFunctionCorrection(){
-        Table table = new Table();
-        table.squares[3].value= 5;
-        table.squares[0].value= 7;
-        Square[] column = new Square[3];
-        column = table.getColumn(1);
-        assertEquals(5,column[1].value);
-        assertEquals(7,column[0].value);
-        assertEquals(0,column[2].value);
+    @Test
+    public void testGetSquaresMethod(){
+        Table test = new Table();
 
+        Assertions.assertEquals(0, test.getSquares()[3].getValue());
     }
-*/
+
+
     @Test
     public void testGetRowFunctionCorrection(){
         Table table = new Table();
-        table.squares[4].value= 5;
-        table.squares[5].value= 7;
-        Square[] row = new Square[3];
-        //row = table.getRow(2);
-        //assertEquals(5,row[1].value);
-        //assertEquals(0,row[0].value);
-        //assertEquals(7,row[2].value);
+        List<Square> row1;
+        List<Square> row2;
+        List<Square> row3;
+        List<Square> pattern = new ArrayList<>();
+
+        pattern.add(new Square());
+        pattern.add(new Square(5));
+        pattern.add(new Square(7));
+        pattern.add(new Square(2));
+        pattern.add(new Square(1));
+        pattern.add(new Square(8));
+        pattern.add(new Square(9));
+        pattern.add(new Square(1));
+        pattern.add(new Square(0));
+        table.squares[0].value= 0;
+        table.squares[1].value= 5;
+        table.squares[2].value= 7;
+        table.squares[3].value= 2;
+        table.squares[4].value= 1;
+        table.squares[5].value= 8;
+        table.squares[6].value= 9;
+        table.squares[7].value= 1;
+        row1 = table.getRow(1);
+        row2 = table.getRow(2);
+        row3 = table.getRow(3);
+
+        Assertions.assertEquals(pattern.get(1).getValue(),row1.get(1).getValue());
+        Assertions.assertEquals(pattern.get(4).getValue(),row2.get(1).getValue());
+        Assertions.assertEquals(pattern.get(8).getValue(),row3.get(2).getValue());
+
+
 
     }
 
     @Test
-    public void testcheckPossibilityFunction(){
-    Table table = new Table();
-    table.setValue(3,1,1);
-    assertEquals(false,table.checkPossibility(3,2,1));
-    assertEquals(true,table.checkPossibility(4,1,1));
-    assertEquals(5,table.setValue(5,1,1));
-    assertEquals(false,table.checkPossibility(5,3,1));
+    public void testGetColumnFunctionCorrection(){
+
+        Table table = new Table();
+        List<Square> column1;
+        List<Square> column2;
+        List<Square> column3;
+        List<Square> pattern = new ArrayList<>();
+
+        pattern.add(new Square());
+        pattern.add(new Square(5));
+        pattern.add(new Square(7));
+        pattern.add(new Square(2));
+        pattern.add(new Square(1));
+        pattern.add(new Square(8));
+        pattern.add(new Square(9));
+        pattern.add(new Square(1));
+        pattern.add(new Square(0));
+        table.squares[0].value= 0;
+        table.squares[1].value= 5;
+        table.squares[2].value= 7;
+        table.squares[3].value= 2;
+        table.squares[4].value= 1;
+        table.squares[5].value= 8;
+        table.squares[6].value= 9;
+        table.squares[7].value= 1;
+        column1 = table.getColumn(1);
+        column2 = table.getColumn(2);
+        column3 = table.getColumn(3);
+
+        Assertions.assertEquals(pattern.get(3).getValue(),column1.get(1).getValue());
+        Assertions.assertEquals(pattern.get(1).getValue(),column2.get(0).getValue());
+        Assertions.assertEquals(pattern.get(8).getValue(),column3.get(2).getValue());
+
+    }
+
+    @Test
+    public void testCheckPossibilityInTable(){
+            Table test = new Table();
+
+            test.squares[1].setValue(1);
+            Assertions.assertFalse(test.checkPossibilityInTable(test.squares,1));
+
     }
 
     @Test
     public void testSetValueMethod(){
-        Table table = new Table();
-        table.setValue(5,3,3);
-        assertEquals(5,table.squares[8].value);
+
+        Table test = new Table();
+
+        Assertions.assertEquals(2,test.setValue(2,1,2));
+        Assertions.assertEquals(0,test.setValue(2,1,1));
+        Assertions.assertEquals(3,test.setValue(3,1,1));
     }
+
+
+
 }

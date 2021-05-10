@@ -1,13 +1,22 @@
 package sudoku;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 
+/**
+ *  Sudoku Class implement Table Objects.
+ */
 public class Sudoku{
 
+    /**
+     * Array of Tables.
+     */
     Table[] tables;
 
+    /**
+     * Fill up the {@code tables} array with empty Table objects.
+     */
     public Sudoku() {
         this.tables = new Table[9];
         for (int i = 0; i < 9; i++) {
@@ -17,7 +26,11 @@ public class Sudoku{
     }
 
 
-
+    /**
+     * Get indexed column.
+     * @param columnIndex indexes the column.
+     * @return List with the squares in indexed column.
+     */
     private Square[] getColumn(int columnIndex){
         List<Square> column = new ArrayList<>();
         int tableGetColumnIndex;
@@ -42,7 +55,7 @@ public class Sudoku{
         return returnValue;
     }
 
-    public Square[] getRow(int rowIndex){
+    private Square[] getRow(int rowIndex){
         List<Square> row = new ArrayList<>();
         int tableGetRowIndex;
         if(rowIndex%3 == 0){
@@ -77,25 +90,39 @@ public class Sudoku{
 
     }
 
-
+    /**
+     * Fill up the Game's base with indexed values.
+     */
         public  void setTable(){
-        ;}
-
-        public boolean isValid(int value, int rowIndex, int columnIndex){
-            Square[] row = new Square[9];
-            row = getRow(rowIndex);
-            Square[] column = new Square[9];
-            column = getColumn(columnIndex);
-            if( checkColumn(value, column)&&
-                checkRow(value, row) &&
-                checkTable(value, rowIndex, columnIndex))
-            {
-                return true;
-            }
-            else return false;
         }
 
+    /**
+     * Check the possibility if the indexed value can be placed on the table.
+     * @param value The value which needs to be placed.
+     * @param rowIndex The index of the row.
+     * @param columnIndex The index of the column.
+     * @return boolean about the possibility.
+     */
+        private boolean isValid(int value, int rowIndex, int columnIndex){
+            Square[] row;
+            row = getRow(rowIndex);
+            Square[] column;
+            column = getColumn(columnIndex);
+            return checkColumn(value, column) &&
+                    checkRow(value, row) &&
+                    checkTable(value, rowIndex, columnIndex);
+        }
+    /**
+     * Allows the user to set the value int the table with indexed parameters.
+     * @param value The value needs to be placed.
+     * @param rowIndex The indexed row.
+     * @param columnIndex The indexed Column
+     * @return The value if the possibility was valid or non-null zero value.
+     */
         public int setValue(int value, int rowIndex, int columnIndex) {
+            if(value < 0 || value>9){
+                return 0;
+            }
             if(isValid(value, rowIndex, columnIndex)){
                 int tableIndex;
                 tableIndex = whichTable(rowIndex,columnIndex);
@@ -120,6 +147,12 @@ public class Sudoku{
             return 0;
         }
 
+    /**
+     * Check the possibility in row if the value can be placed on the table.
+     * @param value The value which needs to be checked.
+     * @param row The row which needs to be checked.
+     * @return boolean about the possibility.
+     */
         private boolean checkRow(int value, Square[] row) {
             for (int i = 0; i < 9; i++) {
                 if (row[i].value == value) {
@@ -128,6 +161,13 @@ public class Sudoku{
             }
             return true;
         }
+
+    /**
+     * Check the possibility in column if the value can be placed on the table.
+     * @param value The value which needs to be checked.
+     * @param column The column which needs to be checked.
+     * @return boolean about the possibility.
+     */
         private boolean checkColumn(int value, Square[] column) {
             for (int i = 0; i < 9; i++) {
                 if (column[i].value == value) {
@@ -136,12 +176,25 @@ public class Sudoku{
             }
             return true;
         }
+
+    /**
+     * Check the possibility in the table if the value can be placed in the game.
+     * @param value The value which needs to be checked.
+     * @param row The row which needs to be checked.
+     * @param column The column which needs to be checked.
+     * @return boolean about the possibility.
+     */
         private boolean checkTable(int value, int row, int column) {
             int table = whichTable(row,column);
             return tables[table].checkPossibilityInTable(this.tables[table].squares, value);
             }
 
-
+    /**
+     * Identify the table using row and column indexes.
+     * @param row The row index.
+     * @param column The column index
+     * @return which table contains the parameters.
+     */
         private int whichTable(int row, int column) {
             int table;
             if (row > 0 && row < 4) {
@@ -162,4 +215,3 @@ public class Sudoku{
         }
 
         }
-
