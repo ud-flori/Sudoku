@@ -24,9 +24,9 @@
             <Insets left="30.0" />
          </padding>
       </Label>
-      <Pane layoutX="26.0" layoutY="69.0" prefHeight="318.0" prefWidth="402.0" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="69.0">
+      <Pane layoutX="25.0" layoutY="66.0" prefHeight="321.0" prefWidth="366.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="66.0">
          <children>
-            <GridPane fx:id="Board" layoutX="-4.0" layoutY="-12.0" prefHeight="334.0" prefWidth="376.0" style="-fx-background-color: #282e40; -fx-border-style: solid;" stylesheets="@style.css">
+            <GridPane fx:id="Board" layoutX="-4.0" layoutY="-2.0" prefHeight="324.0" prefWidth="372.0" style="-fx-background-color: #282e40; -fx-border-style: solid;" stylesheets="@style.css">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" percentWidth="11.0" prefWidth="30.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="11.0" prefWidth="30.0" />
@@ -42,8 +42,8 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -73,7 +73,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="scoreBoardButton1" layoutX="416.0" layoutY="116.0" maxHeight="25.0" mnemonicParsing="false" onMouseClicked="#startGame" prefHeight="28.0" prefWidth="150.0" style="-fx-background-color: #282e40;" text="Start" textFill="#c4f1be">
+      <Button fx:id="startGame" layoutX="416.0" layoutY="116.0" maxHeight="25.0" mnemonicParsing="false" onMouseClicked="#startGame" prefHeight="28.0" prefWidth="150.0" style="-fx-background-color: #282e40;" text="Start" textFill="#c4f1be">
          <font>
             <Font name="Impact" size="12.0" />
          </font>

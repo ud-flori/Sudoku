@@ -1,5 +1,7 @@
 package sudoku;
 
+import com.google.common.annotations.VisibleForTesting;
+
 import java.util.ArrayList;
 
 import java.util.List;
@@ -25,12 +27,17 @@ public class Sudoku{
 
     }
 
+    public getValue(int tableindex,int row, int column){
+        return this.tables[tableindex].get
+    }
+
 
     /**
      * Get indexed column.
      * @param columnIndex indexes the column.
      * @return List with the squares in indexed column.
      */
+
     private Square[] getColumn(int columnIndex){
         List<Square> column = new ArrayList<>();
         int tableGetColumnIndex;
@@ -55,6 +62,7 @@ public class Sudoku{
         return returnValue;
     }
 
+    @VisibleForTesting
     private Square[] getRow(int rowIndex){
         List<Square> row = new ArrayList<>();
         int tableGetRowIndex;
@@ -120,7 +128,7 @@ public class Sudoku{
      * @return The value if the possibility was valid or non-null zero value.
      */
         public int setValue(int value, int rowIndex, int columnIndex) {
-            if(value < 0 || value>9){
+            if(value < 1 || value>9){
                 return 0;
             }
             if(isValid(value, rowIndex, columnIndex)){
@@ -142,6 +150,7 @@ public class Sudoku{
                 }
 
                 this.tables[tableIndex].setValue(value, rowIndex, columnIndex);
+
                 return value;
             }
             return 0;
@@ -196,22 +205,25 @@ public class Sudoku{
      * @return which table contains the parameters.
      */
         private int whichTable(int row, int column) {
-            int table;
+            int table = 0;
             if (row > 0 && row < 4) {
                 if (column > 0 && column < 4) table = 0;
-                if (column > 3 && column < 7) table = 1;
+                else if (column > 3 && column < 7) table = 1;
                 else table = 2;
             } else if (row > 3 && row < 7) {
                 if (column > 0 && column < 4) table = 3;
-                if (column > 3 && column < 7) table = 4;
+                else if (column > 3 && column < 7) table = 4;
                 else table = 5;
-            } else {
+            } else if (row>6){
                 if (column > 0 && column < 4) table = 6;
-                if (column > 3 && column < 7) table = 7;
-                else table = 8;
-
+                else if (column > 3 && column < 7) table = 7;
+                else {
+                    table = 8;
+                }
             }
-            return table;
+
+
+                        return table;
         }
 
         }

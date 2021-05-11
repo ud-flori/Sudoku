@@ -15,7 +15,7 @@ public class Table {
      * The Squares in one table.
      * Each Square in Array represents Square object.
      */
-    Square [] squares;
+    public Square [] squares;
 
     /**
      * Creates the table and fill up with Squares.
@@ -154,7 +154,7 @@ public class Table {
      * @param column The index of the column
      * @return The position in @{@code squares} array.
      */
-    private  int getPosition(int row, int column){
+    public  int getPosition(int row, int column){
         switch(row) {
             case 1:
                 return column;
