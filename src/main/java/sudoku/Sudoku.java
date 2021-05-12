@@ -14,7 +14,8 @@ public class Sudoku{
     /**
      * Array of Tables.
      */
-    Table[] tables;
+    public Table[] tables;
+
 
     /**
      * Fill up the {@code tables} array with empty Table objects.
@@ -27,16 +28,28 @@ public class Sudoku{
 
     }
 
-    public getValue(int tableindex,int row, int column){
-        return this.tables[tableindex].get
+
+
+
+
+    public boolean isGameWon(){
+
+        for(int i=0;i<9;i++){
+            for(int j =1; j<=3;j++){
+                for(int k=0;k<=3;k++){
+                    if(!(this.tables[i].checkPossibilityInTable(this.tables[i].squares,0)))
+                        return false;
+                }
+            }
+
+        }
+
+        return true;
+
     }
 
 
-    /**
-     * Get indexed column.
-     * @param columnIndex indexes the column.
-     * @return List with the squares in indexed column.
-     */
+
 
     private Square[] getColumn(int columnIndex){
         List<Square> column = new ArrayList<>();
@@ -59,6 +72,7 @@ public class Sudoku{
 
         Square[] returnValue = new Square[column.size()];
         column.toArray(returnValue);
+
         return returnValue;
     }
 
@@ -72,14 +86,18 @@ public class Sudoku{
         else{
             tableGetRowIndex = rowIndex % 3;
         }
+
         if(rowIndex%9 == 0) {
             rowIndex = 6;
         }
         else if(rowIndex%6 == 0){
             rowIndex = 3;
         }
+        else if(rowIndex%3 == 0){
+            rowIndex = 0;
+        }
         else{
-            rowIndex = (rowIndex/3)*3;
+            rowIndex = (rowIndex / 3) * 3;
         }
 
         row.addAll(
@@ -116,6 +134,8 @@ public class Sudoku{
             row = getRow(rowIndex);
             Square[] column;
             column = getColumn(columnIndex);
+            System.out.println("////////////////////////////////////////////////////");
+            System.out.println("IS VALID VALUE FUCKING VALUE: "+value);
             return checkColumn(value, column) &&
                     checkRow(value, row) &&
                     checkTable(value, rowIndex, columnIndex);
@@ -128,33 +148,49 @@ public class Sudoku{
      * @return The value if the possibility was valid or non-null zero value.
      */
         public int setValue(int value, int rowIndex, int columnIndex) {
-            if(value < 1 || value>9){
+            if (value < 0 || value > 9) {
                 return 0;
             }
-            if(isValid(value, rowIndex, columnIndex)){
-                int tableIndex;
-                tableIndex = whichTable(rowIndex,columnIndex);
+            int tableIndex;
+            if (isValid(value, rowIndex, columnIndex)) {
 
-                if(rowIndex == 9 || rowIndex == 6 || rowIndex ==3) {
+                tableIndex = whichTable(rowIndex, columnIndex);
+
+                if (rowIndex == 9 || rowIndex == 6 || rowIndex == 3) {
                     rowIndex = 3;
-                }
-                else{
+                } else {
                     rowIndex = rowIndex % 3;
                 }
 
-                if(columnIndex == 9 || columnIndex == 6 || columnIndex == 3) {
+                if (columnIndex == 9 || columnIndex == 6 || columnIndex == 3) {
                     columnIndex = 3;
-                }
-                else{
-                    columnIndex= columnIndex % 3;
+                } else {
+                    columnIndex = columnIndex % 3;
                 }
 
                 this.tables[tableIndex].setValue(value, rowIndex, columnIndex);
 
                 return value;
+            } else {
+                tableIndex = whichTable(rowIndex, columnIndex);
+
+                if (rowIndex == 9 || rowIndex == 6 || rowIndex == 3) {
+                    rowIndex = 3;
+                } else {
+                    rowIndex = rowIndex % 3;
+                }
+
+                if (columnIndex == 9 || columnIndex == 6 || columnIndex == 3) {
+                    columnIndex = 3;
+                } else {
+                    columnIndex = columnIndex % 3;
+                }
+
+                this.tables[tableIndex].setValue(value, rowIndex, columnIndex);
+                return 0;
             }
-            return 0;
         }
+
 
     /**
      * Check the possibility in row if the value can be placed on the table.
@@ -163,11 +199,18 @@ public class Sudoku{
      * @return boolean about the possibility.
      */
         private boolean checkRow(int value, Square[] row) {
+            System.out.println("////////////////////////////////////////////////////");
+            System.out.println("Calling checkRow value:" + value);
+            for(int i=0;i<row.length;i++){
+                System.out.println(String.format("%d. value: %d",i,row[i].value));
+            }
             for (int i = 0; i < 9; i++) {
                 if (row[i].value == value) {
+                    System.out.println("checkrow= " + false);
                     return false;
                 }
             }
+            System.out.println("checkrow= " + true);
             return true;
         }
 
@@ -178,11 +221,18 @@ public class Sudoku{
      * @return boolean about the possibility.
      */
         private boolean checkColumn(int value, Square[] column) {
+            System.out.println("////////////////////////////////////////////////////");
+            System.out.println("Calling checkColumn value: "+value);
             for (int i = 0; i < 9; i++) {
                 if (column[i].value == value) {
+                    System.out.println("column I value: "+ column[i].value);
+
+                    System.out.println("checkcolumn= " + false);
+
                     return false;
                 }
             }
+            System.out.println("checkcolumn= " + true);
             return true;
         }
 
@@ -195,8 +245,9 @@ public class Sudoku{
      */
         private boolean checkTable(int value, int row, int column) {
             int table = whichTable(row,column);
+
             return tables[table].checkPossibilityInTable(this.tables[table].squares, value);
-            }
+        }
 
     /**
      * Identify the table using row and column indexes.

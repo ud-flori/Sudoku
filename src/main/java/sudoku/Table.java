@@ -125,9 +125,12 @@ public class Table {
     public boolean checkPossibilityInTable(Square[] table, int value){
         for(int i=0;i<9;i++){
             if(table[i].value == value){
+                System.out.println("checkTable: "+false);
+
                 return false;
             }
         }
+        System.out.println("checkTable: "+true);
         return true;
     }
 
@@ -144,6 +147,7 @@ public class Table {
                 return value;
             }
 
+            this.squares[getPosition(row,column)-1].value = 0;
             return 0;
 
         }
@@ -154,7 +158,7 @@ public class Table {
      * @param column The index of the column
      * @return The position in @{@code squares} array.
      */
-    public  int getPosition(int row, int column){
+    public int getPosition(int row, int column){
         switch(row) {
             case 1:
                 return column;

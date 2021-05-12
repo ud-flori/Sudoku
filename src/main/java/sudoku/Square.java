@@ -9,7 +9,7 @@ public class Square {
     /**
      * The value of the square.
      */
-    int value;
+    public int value;
 
     /**
      * Sets the {@code value} field to non-null value, if one Square implemented

@@ -1,5 +1,14 @@
 package controller;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
@@ -13,12 +22,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
+import persistence.DataHandler;
 import sudoku.Sudoku;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import sudoku.SudokuMap;
 
+import javax.inject.Inject;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,9 +66,14 @@ public class SudokuController {
 
     ObjectMapper objectmapper = new ObjectMapper();
 
+    Boolean isGameWon = false;
 
+    DataHandler handler;
 
+    String map;
 
+    @Inject
+    private FXMLLoader fxmlLoader;
 
 
 
@@ -100,6 +116,7 @@ public class SudokuController {
             initializeTable(easymap);
             Board.setDisable(false);
             //startTimer();
+            map = "easy";
         }
 
 
@@ -115,7 +132,21 @@ public class SudokuController {
 
     }
 
-    private void initializeTable(SudokuMap map) {
+    @FXML
+    public void switchToScoreBoard(ActionEvent e){
+
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/scoreboard.fxml"));
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    private void initializeTable(SudokuMap map) throws IOException {
 
         String style = "-fx-border-style: solid; -fx-border-style: solid;";
         for (int i = 0; i < 9; i++) {
@@ -132,17 +163,22 @@ public class SudokuController {
 
                 temp.setOnKeyPressed( e -> {
 
-                    for(int h=0;h<9;h++){
-                        for(int k=0;k<3;k++){
-                            for(int l=0;l<3;l++){
-                                //TODO
-                            }
+                    int code = e.getCode().getCode() - 96;
+
+
+                    if(code == -88){
+                        int text = sudoku.setValue(0, Board.getRowIndex(temp) + 1, Board.getColumnIndex(temp) + 1);
+                        temp.setStyle(temp.getStyle().replaceFirst("-fx-text-fill: \\S+","-fx-text-fill: white"));
+                        System.out.println("code: "+code);
+                        System.out.println("return value: "+text);
                     }
 
-                    int code = e.getCode().getCode() - 96;
-                    System.out.println(code);
+
+
                     if (code > 0 && code < 10) {
                         int text = sudoku.setValue(code, Board.getRowIndex(temp) + 1, Board.getColumnIndex(temp) + 1);
+                        System.out.println(code);
+                        System.out.println(text);
                         if (text == 0) {
                             temp.setStyle(temp.getStyle().replaceFirst("-fx-text-fill: \\S+","-fx-text-fill: red"));
 
@@ -154,7 +190,18 @@ public class SudokuController {
                     }
 
                     System.out.println(temp.getStyle());
-                    System.out.println(temp.getText().length());
+                    if(sudoku.isGameWon()){
+                        handler = new DataHandler();
+                        try {
+                            handler.setData(this.username,this.map,20);
+                        } catch (IOException ioException) {
+                            ioException.printStackTrace();
+                        }
+
+
+
+                        ;}
+
                 }
 
 

@@ -57,7 +57,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ChoiceBox>
-      <Button fx:id="scoreBoardButton" layoutX="416.0" layoutY="251.0" maxHeight="25.0" mnemonicParsing="false" onMouseClicked="#showScoreboard" prefHeight="28.0" prefWidth="150.0" style="-fx-background-color: #282e40;" text="Scoreboard" textFill="#c4f1be" AnchorPane.rightAnchor="34.0">
+      <Button fx:id="scoreBoardButton" layoutX="416.0" layoutY="251.0" maxHeight="25.0" mnemonicParsing="false" onAction="#switchToScoreBoard" onMouseClicked="#showScoreboard" prefHeight="28.0" prefWidth="150.0" style="-fx-background-color: #282e40;" text="Scoreboard" textFill="#c4f1be" AnchorPane.rightAnchor="34.0">
          <font>
             <Font name="Impact" size="12.0" />
          </font>
@@ -65,7 +65,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="exitButton" layoutX="416.0" layoutY="301.0" maxHeight="25.0" mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #282e40;" text="Exit" textFill="#c4f1be" AnchorPane.rightAnchor="34.0">
+      <Button fx:id="exitButton" layoutX="416.0" layoutY="301.0" maxHeight="25.0" mnemonicParsing="false" onAction="#exitGame" onMouseClicked="#exitGame" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #282e40;" text="Exit" textFill="#c4f1be" AnchorPane.rightAnchor="34.0">
          <font>
             <Font name="Impact" size="12.0" />
          </font>

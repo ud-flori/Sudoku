@@ -17,8 +17,12 @@ public class SudokuTest {
         Sudoku sudoku = new Sudoku();
 
         Assertions.assertEquals(1,sudoku.setValue(1,1,1));
-        Assertions.assertEquals(2,sudoku.setValue(2,1,1));
-        Assertions.assertEquals(1,sudoku.setValue(1,9,9));
+        Assertions.assertEquals(0,sudoku.setValue(0,1,1));
+        Assertions.assertEquals(0,sudoku.setValue(0,1,1));
+        Assertions.assertEquals(0,sudoku.setValue(0,1,1));
+        Assertions.assertEquals(0,sudoku.setValue(0,1,1));
+        Assertions.assertEquals(1,sudoku.setValue(1,1,1));
+
 /*
         Assertions.assertEquals(1,sudoku.setValue(1,1,1));
         Assertions.assertEquals(0,sudoku.setValue(1,9,1));
