@@ -8,9 +8,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to  top, #A2C3A4, #869D96,#525B76);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SudokuController">
    <children>
-      <Label fx:id="timerContent" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutY="167.0" maxHeight="25.0" maxWidth="1.7976931348623157E308" prefHeight="76.0" prefWidth="600.0" text="0:00" textFill="#282e40" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label fx:id="timerContent" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutY="181.0" maxHeight="25.0" maxWidth="1.7976931348623157E308" prefHeight="76.0" prefWidth="600.0" text="00:00" textFill="#282e40" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
-            <Font name="Impact" size="32.0" />
+            <Font name="Droid Sans Mono" size="32.0" />
          </font>
          <padding>
             <Insets right="80.0" />
