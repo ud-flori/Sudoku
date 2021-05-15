@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
@@ -9,12 +8,12 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to  top, #A2C3A4, #869D96,#525B76);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ScoreboardController">
     <children>
-        <TableView fx:id="highScoreTable" editable="false" layoutX="56.0" layoutY="70.0" prefHeight="261.0" prefWidth="488.0" style="-fx-background-color: linear-gradient(to  top, #A2C3A4, #869D96,#525B76);" stylesheets="@style.css">
+        <TableView fx:id="Scoreboard" editable="true" layoutX="56.0" layoutY="70.0" prefHeight="261.0" prefWidth="488.0" style="-fx-background-color: linear-gradient(to  top, #A2C3A4, #869D96,#525B76);" stylesheets="@style.css">
             <columns>
-                <TableColumn fx:id="player" prefWidth="116.0" text="Player" />
-                <TableColumn fx:id="map" prefWidth="86.0" text="Minutes" />
-                <TableColumn fx:id="time" minWidth="0.0" prefWidth="102.0" text="time" />
-                <TableColumn fx:id="date" prefWidth="183.0" text="Date" />
+                <TableColumn fx:id="player" prefWidth="114.0" text="Player" />
+                <TableColumn fx:id="duration" prefWidth="95.0" text="Map" />
+                <TableColumn fx:id="created" minWidth="2.0" prefWidth="103.0" text="Duration" />
+            <TableColumn prefWidth="175.0" text="Date" />
             </columns>
         </TableView>
         <Label layoutX="222.0" layoutY="14.0" text="Scoreboard" textFill="#282e40">
@@ -29,19 +28,13 @@
             </DropShadow>
          </effect>
         </Label>
-        <Button fx:id="newGameButton" layoutX="139.0" layoutY="351.0" maxHeight="25.0" maxWidth="122.0" mnemonicParsing="false" onAction="#startNewGame" prefHeight="51.0" prefWidth="122.0" style="-fx-background-color: #282e40;" text="New game" textFill="#c4f1be">
+        <Button layoutX="139.0" layoutY="351.0" maxHeight="25.0" maxWidth="122.0" mnemonicParsing="false" onAction="#startNewGame" prefHeight="51.0" prefWidth="122.0" style="-fx-background-color: #282e40;" text="New game" textFill="#c4f1be">
          <font>
             <Font name="Impact" size="12.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Button fx:id="exitButton" layoutX="354.0" layoutY="351.0" maxHeight="25.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: #282e40;" text="Exit" textFill="#c4f1be">
+         </font></Button>
+      <Button layoutX="354.0" layoutY="351.0" maxHeight="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: #282e40;" text="Exit" textFill="#c4f1be">
          <font>
             <Font name="Impact" size="12.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
+         </font></Button>
     </children>
 </Pane>

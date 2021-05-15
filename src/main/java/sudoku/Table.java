@@ -125,9 +125,12 @@ public class Table {
     public boolean checkPossibilityInTable(Square[] table, int value){
         for(int i=0;i<9;i++){
             if(table[i].value == value){
+                System.out.println("checkTable: "+false);
+
                 return false;
             }
         }
+        System.out.println("checkTable: "+true);
         return true;
     }
 

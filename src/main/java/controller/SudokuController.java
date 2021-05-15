@@ -1,9 +1,6 @@
 package controller;
 
-import javafx.application.ConditionalFeature;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -36,8 +33,6 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class SudokuController {
@@ -63,7 +58,6 @@ public class SudokuController {
     @FXML
     GridPane Board;
 
-
     boolean gameIsRunning = false;
 
     Sudoku sudoku;
@@ -77,13 +71,6 @@ public class SudokuController {
     DataHandler handler;
 
     String map;
-
-    long start_time;
-
-    long timer_time;
-
-    Timer timer = new Timer(true);
-
 
     @Inject
     private FXMLLoader fxmlLoader;
@@ -128,48 +115,13 @@ public class SudokuController {
             SudokuMap easymap = objectmapper.readValue(getClass().getResourceAsStream("/maps/easy.json"),SudokuMap.class);
             initializeTable(easymap);
             Board.setDisable(false);
-            start_time = System.currentTimeMillis();
-            timer.scheduleAtFixedRate(new TimerTask(){
-                @Override
-                public void run(){
-                    Platform.runLater(() -> {
-                        timerContent.setText(getTimerStringValue());
-                    });
-
-                }
-            },0,1000);
+            //startTimer();
             map = "easy";
         }
 
 
 
     }
-
-    private String getTimerStringValue(){
-        timer_time = System.currentTimeMillis();
-        long difference = timer_time-this.start_time;
-        timer_time = difference/1000;
-        long m = timer_time/60;
-        long s = timer_time%60;
-        String format = "";
-
-        if(m<10){
-                format+="0%d:";
-        }
-        else{
-            format+="%d:";
-        }
-
-        if(s<10){
-            format+="0%d";
-        }
-        else{
-            format+="%d";
-        }
-
-        return String.format(format,m,s);
-    }
-
 
     private void loadMap(String map) {
         // TODO
@@ -183,18 +135,16 @@ public class SudokuController {
     @FXML
     public void switchToScoreBoard(ActionEvent e){
 
-        timer.purge();
-        Parent secondary = null;
+        Parent root = null;
         try {
-            secondary = FXMLLoader.load(getClass().getResource("/fxml/scoreboard.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/fxml/scoreboard.fxml"));
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(secondary));
+        stage.setScene(new Scene(root));
         stage.show();
     }
-
 
     private void initializeTable(SudokuMap map) throws IOException {
 
@@ -213,59 +163,47 @@ public class SudokuController {
 
                 temp.setOnKeyPressed( e -> {
 
-                    sudoku.setValue(0, Board.getRowIndex(temp) + 1, Board.getColumnIndex(temp) + 1);
-                    temp.setText(" ");
+                    int code = e.getCode().getCode() - 96;
 
 
-                                int code = e.getCode().getCode() - 96;
+                    if(code == -88){
+                        int text = sudoku.setValue(0, Board.getRowIndex(temp) + 1, Board.getColumnIndex(temp) + 1);
+                        temp.setStyle(temp.getStyle().replaceFirst("-fx-text-fill: \\S+","-fx-text-fill: white"));
+                        System.out.println("code: "+code);
+                        System.out.println("return value: "+text);
+                    }
 
 
-                                if (code == -88) {
-                                    int text = sudoku.setValue(0, Board.getRowIndex(temp) + 1, Board.getColumnIndex(temp) + 1);
 
-                                    temp.setStyle(temp.getStyle().replaceFirst("-fx-text-fill: \\S+", "-fx-text-fill: white"));
+                    if (code > 0 && code < 10) {
+                        int text = sudoku.setValue(code, Board.getRowIndex(temp) + 1, Board.getColumnIndex(temp) + 1);
+                        System.out.println(code);
+                        System.out.println(text);
+                        if (text == 0) {
+                            temp.setStyle(temp.getStyle().replaceFirst("-fx-text-fill: \\S+","-fx-text-fill: red"));
 
-                                }
+                        }
+                        else{
+                            temp.setStyle(temp.getStyle().replaceFirst("-fx-text-fill: \\S+","-fx-text-fill: white"));
+                        }
 
+                    }
 
-                                if (code > 0 && code < 10) {
-                                    int text = sudoku.setValue(code, Board.getRowIndex(temp) + 1, Board.getColumnIndex(temp) + 1);
-
-                                    if (text == 0) {
-                                        temp.setStyle(temp.getStyle().replaceFirst("-fx-text-fill: \\S+", "-fx-text-fill: red"));
-
-                                    } else {
-                                        temp.setStyle(temp.getStyle().replaceFirst("-fx-text-fill: \\S+", "-fx-text-fill: white"));
-                                    }
-
-                                }
-
-                                if (sudoku.isGameWon()) {
-                                    handler = new DataHandler();
-                                    try {
-                                        long end_time = System.currentTimeMillis();
-                                        long difference = end_time-this.start_time;
-                                        long total = difference/1000;
-                                        long m = total/60;
-                                        long s = total%60;
-                                        handler.setData(this.username, this.map, String.format("%d:%d",m,s));
-                                        Parent secondary;
-                                        secondary = FXMLLoader.load(getClass().getResource("/fxml/scoreboard.fxml"));
-                                        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-                                        stage.setScene(new Scene(secondary));
-                                        stage.show();
-
-                                    } catch (IOException ioException) {
-                                        ioException.printStackTrace();
-                                    }
+                    System.out.println(temp.getStyle());
+                    if(sudoku.isGameWon()){
+                        handler = new DataHandler();
+                        try {
+                            handler.setData(this.username,this.map,20);
+                        } catch (IOException ioException) {
+                            ioException.printStackTrace();
+                        }
 
 
-                                    ;
-                                }
 
-
+                        ;}
 
                 }
+
 
                 );
                 if (((j / 3) % 2) == ((i / 3) % 2) || (((j / 3) % 2 == 0) && ((i / 3) % 2 == 0))) {
@@ -275,11 +213,8 @@ public class SudokuController {
                 }
                 Board.add(temp, j, i);
             }
-
         }
-
     }
-
 
 
 }
