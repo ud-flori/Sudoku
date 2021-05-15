@@ -134,8 +134,6 @@ public class Sudoku{
             row = getRow(rowIndex);
             Square[] column;
             column = getColumn(columnIndex);
-            System.out.println("////////////////////////////////////////////////////");
-            System.out.println("IS VALID VALUE FUCKING VALUE: "+value);
             return checkColumn(value, column) &&
                     checkRow(value, row) &&
                     checkTable(value, rowIndex, columnIndex);
@@ -199,18 +197,13 @@ public class Sudoku{
      * @return boolean about the possibility.
      */
         private boolean checkRow(int value, Square[] row) {
-            System.out.println("////////////////////////////////////////////////////");
-            System.out.println("Calling checkRow value:" + value);
-            for(int i=0;i<row.length;i++){
-                System.out.println(String.format("%d. value: %d",i,row[i].value));
-            }
+
             for (int i = 0; i < 9; i++) {
                 if (row[i].value == value) {
-                    System.out.println("checkrow= " + false);
+
                     return false;
                 }
             }
-            System.out.println("checkrow= " + true);
             return true;
         }
 
@@ -221,18 +214,13 @@ public class Sudoku{
      * @return boolean about the possibility.
      */
         private boolean checkColumn(int value, Square[] column) {
-            System.out.println("////////////////////////////////////////////////////");
-            System.out.println("Calling checkColumn value: "+value);
+
             for (int i = 0; i < 9; i++) {
                 if (column[i].value == value) {
-                    System.out.println("column I value: "+ column[i].value);
-
-                    System.out.println("checkcolumn= " + false);
 
                     return false;
                 }
             }
-            System.out.println("checkcolumn= " + true);
             return true;
         }
 

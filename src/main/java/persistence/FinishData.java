@@ -6,10 +6,15 @@ public class FinishData {
 
     String player;
     String map;
-    int time;
+    String time;
     Date date;
 
-    public FinishData(String player, String map, int time, Date date){
+
+    public FinishData() {
+        super();
+    }
+
+    public FinishData(String player, String map, String time, Date date){
             this.player = player;
             this.map = map;
             this.time = time;
@@ -24,8 +29,8 @@ public class FinishData {
         return map;
     }
 
-    public int getTime() {
-        return time;
+    public String getTime() {
+        return this.time;
     }
 
     public Date getDate() {
@@ -36,8 +41,8 @@ public class FinishData {
         this.player = player;
     }
 
-    public void setTime(int time) {
-        this.time = time;
+    public void setTime(String time) {
+            this.time = time;
     }
 
     public void setDate(Date date) {
@@ -47,4 +52,5 @@ public class FinishData {
     public void setMap(String map) {
         this.map = map;
     }
+
 }
