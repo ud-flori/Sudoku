@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 public class SudokuMapTest {
 
 
+    private Object SudokuMap;
+
     @Test
     public void testingSettersAndGetters(){
         SudokuMap test = new SudokuMap();
@@ -20,8 +22,14 @@ public class SudokuMapTest {
         assertEquals(test.getVersion(),"1.0-alpha");
         assertNotNull(test.getMatrix());
 
+    }
 
-
+    @Test
+    public void testingLombokGeneratedMethods(){
+        SudokuMap test = new SudokuMap();
+        assertEquals(true,test.equals(test));
+        SudokuMap test2 = new SudokuMap("example","example","example",new int[9][9]);
+        assertNotNull(test2);
     }
 
 
