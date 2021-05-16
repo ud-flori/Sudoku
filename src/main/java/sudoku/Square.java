@@ -19,7 +19,8 @@ public class Square {
     }
 
     /**
-     * Sets the value field's value to the parameter.
+     * Set the {@code value} value's to the parameter.
+     * @param value The parameter to be set.
      */
     public Square(int value){
         if (value > 0 && value < 10) {
