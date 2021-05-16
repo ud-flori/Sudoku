@@ -69,7 +69,7 @@ public class Table {
      * @param columnIndex The index of the column
      * @return boolean value if the value can be placed or not.
      */
-    private boolean checkPossibility(int value, int rowIndex, int columnIndex) {
+    public boolean checkPossibility(int value, int rowIndex, int columnIndex) {
         List<Square> row;
         row = getRow(rowIndex);
         List<Square> column;
@@ -85,7 +85,7 @@ public class Table {
      * @param value The value which needs to be checked.
      * @return boolean about the possibility.
      */
-    private boolean checkPossibilityInRow(List<Square> list,int value) {
+    public boolean checkPossibilityInRow(List<Square> list,int value) {
         Square[] row = new Square[3];
         list.toArray(row);
         for (int i = 0; i < 3; i++) {
@@ -102,7 +102,7 @@ public class Table {
      * @param value The value which needs to be checked.
      * @return boolean about the possibility.
      */
-    private boolean checkPossibilityInColumn(List<Square> list,int value) {
+    public boolean checkPossibilityInColumn(List<Square> list,int value) {
         Square[] column = new Square[3];
         list.toArray(column);
         for (int i = 0; i < 3; i++) {

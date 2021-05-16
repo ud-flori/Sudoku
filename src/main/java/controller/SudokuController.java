@@ -1,5 +1,7 @@
 package controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,15 +17,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
-import org.apache.logging.log4j.LogManager;
 import persistence.DataHandler;
 import sudoku.Sudoku;
-import org.slf4j.Logger;
 import sudoku.SudokuMap;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 
 public class SudokuController {
@@ -58,7 +59,6 @@ public class SudokuController {
 
     boolean gameIsRunning = false;
     Sudoku sudoku;
-    static Logger log;
     ObjectMapper objectmapper = new ObjectMapper();
     Boolean isGameWon = false;
     DataHandler handler;
@@ -66,7 +66,7 @@ public class SudokuController {
     long start_time;
     long timer_time;
     Timer timer = new Timer(true);
-    private static final org.apache.logging.log4j.Logger logger = LogManager.getLogger();
+    Logger logger = LogManager.getLogger(getClass());
 
     @FXML
     public void initialize() {

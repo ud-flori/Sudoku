@@ -17,7 +17,7 @@ import java.io.IOException;
 public class LaunchController {
 
 
-    private static final Logger logger = LogManager.getLogger();
+    Logger logger = LogManager.getLogger(getClass());
 
     @FXML
     private TextField username;
