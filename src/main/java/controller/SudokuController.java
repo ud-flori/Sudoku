@@ -26,7 +26,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-
+/**
+ * The main controller of the game.
+ */
 public class SudokuController {
 
 
@@ -68,6 +70,10 @@ public class SudokuController {
     Timer timer = new Timer(true);
     Logger logger = LogManager.getLogger(getClass());
 
+
+    /**
+     * Initializing the first steps.
+     */
     @FXML
     public void initialize() {
         sudoku = new Sudoku();
@@ -79,6 +85,9 @@ public class SudokuController {
 
     }
 
+    /**
+     * Function to exit the application.
+     */
     @FXML
     public void exitGame() {
         Stage stage = (Stage) exitButton.getScene().getWindow();
@@ -86,6 +95,10 @@ public class SudokuController {
         logger.info("Exiting game.");
     }
 
+    /**
+     * Generate TextField objects dinamically to represent 9x9 table.
+     * @throws IOException
+     */
     @FXML
     public void startGame() throws IOException {
         this.map = ((String) dropDownMenu.getSelectionModel().getSelectedItem()).toLowerCase();
@@ -105,6 +118,10 @@ public class SudokuController {
         startButton.setDisable(true);
     }
 
+    /**
+     * Open the scoreboard.
+     * @param e
+     */
     @FXML
     public void switchToScoreBoard(ActionEvent e){
         timer.purge();
@@ -122,6 +139,10 @@ public class SudokuController {
 
     }
 
+    /**
+     * Handle player name.
+     * @param username
+     */
     public void initdata (String username) {
         try{
             this.username = username;

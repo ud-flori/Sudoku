@@ -18,15 +18,27 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-
+/**
+ * This class give interface between Java and JSON files.
+ */
 public class DataHandler {
 
     ObjectMapper handler;
 
+    /**
+     * The constructor which creates Jackson objectmapper.
+     */
     public DataHandler(){
         this.handler = new ObjectMapper();
     }
 
+    /**
+     * Set the data to an object and export to JSON file.
+     * @param player
+     * @param map
+     * @param time
+     * @throws IOException
+     */
     public void setData(String player, String map, String time) throws IOException {
 
         new File("assets").mkdir();
@@ -38,6 +50,11 @@ public class DataHandler {
 
     }
 
+    /**
+     * Return List with Data objects.
+     * @return List
+     * @throws IOException
+     */
     public List<FinishData> getData() throws IOException {
 
         new File("assets").mkdir();

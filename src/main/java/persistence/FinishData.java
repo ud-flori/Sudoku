@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+/**
+ * Java object to format JSON file.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -26,6 +26,10 @@ public class Sudoku{
         }
     }
 
+    /**
+     * Check the game if its ended.
+     * @return booelan
+     */
     public boolean isGameWon(){
         for(int i=0;i<9;i++){
             for(int j =1; j<=3;j++){
@@ -38,6 +42,11 @@ public class Sudoku{
         return true;
     }
 
+    /**
+     * Get column by Index
+     * @param columnIndex
+     * @return Square[]
+     */
     private Square[] getColumn(int columnIndex){
         List<Square> column = new ArrayList<>();
         int tableGetColumnIndex;
@@ -54,8 +63,11 @@ public class Sudoku{
         column.toArray(returnValue);
         return returnValue;
     }
-
-    @VisibleForTesting
+    /**
+     * Get row by Index
+     * @param rowIndex
+     * @return Square[]
+     */
     private Square[] getRow(int rowIndex){
         List<Square> row = new ArrayList<>();
         int tableGetRowIndex;

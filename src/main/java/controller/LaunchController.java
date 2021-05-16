@@ -13,7 +13,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 
-
+/**
+ * The class represents the Main Menu of the game
+ */
 public class LaunchController {
 
 
@@ -25,6 +27,12 @@ public class LaunchController {
     @FXML
     private Label errorLabel;
 
+
+    /**
+     * Event starts with the application.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void startAction(ActionEvent actionEvent) throws IOException {
         if ((username.getText().isEmpty() || username.getText().getBytes().length > 25)) {
             errorLabel.setText("Invalid username!");

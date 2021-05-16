@@ -19,6 +19,9 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Controller of the scoreboard.
+ */
 public class ScoreboardController {
 
     @FXML
@@ -39,6 +42,10 @@ public class ScoreboardController {
     @FXML
     private TableColumn<FinishData, Date> date;
 
+    /**
+     * Initialize the scoreboard table.
+     * @throws IOException
+     */
     @FXML
     private void initialize() throws IOException {
         DataHandler handler = new DataHandler();
@@ -52,12 +59,19 @@ public class ScoreboardController {
             date.setCellValueFactory(new PropertyValueFactory<>("date"));
     }
 
+    /**
+     * Exit the application.
+     */
     @FXML
     public void exitGame(){
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Starts new game session.
+     * @param e
+     */
     @FXML
     public void startNewGame(ActionEvent e){
         Parent root = null;

@@ -1,8 +1,7 @@
 package sudoku;
 
 /**
- * The Square Class
- * Represents one cube in sudoku table
+ * The Square Class represents one cube in sudoku table
  */
 public class Square {
 
