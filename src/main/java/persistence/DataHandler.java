@@ -28,7 +28,6 @@ public class DataHandler {
         Date date = new Date();
         System.out.println(time);
         FinishData result = new FinishData(player,map,time,date);
-
         handler.writeValue(new FileWriter(String.valueOf("src/main/java/persistence/"+player+System.currentTimeMillis()+".json")), result);
 
     }
@@ -42,7 +41,6 @@ public class DataHandler {
 
             }
         }
-
         return list;
 
     }

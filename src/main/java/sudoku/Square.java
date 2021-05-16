@@ -23,11 +23,9 @@ public class Square {
      * Sets the {@code value} field's value to the parameter.
      */
     public Square(int value){
-
         if (value > 0 && value < 10) {
                 this.value = value;
             }
-
     }
 
 

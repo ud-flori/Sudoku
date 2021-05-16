@@ -10,7 +10,6 @@ import java.util.List;
  * to make different maps using the Table class.
  */
 public class Table {
-
     /**
      * The Squares in one table.
      * Each Square in Array represents Square object.
@@ -57,11 +56,9 @@ public class Table {
      */
     public List<Square> getRow(int index){
         List<Square> row = new ArrayList<>();
-
         row.add(this.squares[(index-1)*3]);
         row.add(this.squares[(((index-1)*3)+1)]);
         row.add(this.squares[(((index-1)*3)+2)]);
-
         return row;
     }
 
@@ -77,7 +74,7 @@ public class Table {
         row = getRow(rowIndex);
         List<Square> column;
         column = getColumn(columnIndex);
-        return checkPossibilityInRow(row, value) &&
+        return  checkPossibilityInRow(row, value) &&
                 checkPossibilityInColumn(column, value) &&
                 checkPossibilityInTable(this.squares, value);
     }
@@ -167,5 +164,4 @@ public class Table {
                 return 0;
         }
     }
-
 }

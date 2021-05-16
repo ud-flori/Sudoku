@@ -15,10 +15,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.cell.PropertyValueFactory;
 import persistence.DataHandler;
 import persistence.FinishData;
-
 import java.io.IOException;
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,21 +41,15 @@ public class ScoreboardController {
 
     @FXML
     private void initialize() throws IOException {
-
         DataHandler handler = new DataHandler();
-
         List<FinishData> list = handler.getData();
         ObservableList<FinishData> scores = FXCollections.observableArrayList();
         scores.addAll(list);
-
             highScoreTable.setItems(scores);
             player.setCellValueFactory(new PropertyValueFactory<>("player"));
             map.setCellValueFactory(new PropertyValueFactory<>("map"));
             time.setCellValueFactory(new PropertyValueFactory<>("time"));
             date.setCellValueFactory(new PropertyValueFactory<>("date"));
-
-
-
     }
 
     @FXML
@@ -66,7 +57,6 @@ public class ScoreboardController {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
-
 
     @FXML
     public void startNewGame(ActionEvent e){
@@ -80,6 +70,4 @@ public class ScoreboardController {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
-
 }

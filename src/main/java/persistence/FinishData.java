@@ -15,10 +15,10 @@ public class FinishData {
     }
 
     public FinishData(String player, String map, String time, Date date){
-            this.player = player;
-            this.map = map;
-            this.time = time;
-            this.date = date;
+        this.player = player;
+        this.map = map;
+        this.time = time;
+        this.date = date;
     }
 
     public String getPlayer() {
