@@ -128,7 +128,8 @@ public class Sudoku{
             }
             this.tables[tableIndex].setValue(value, rowIndex, columnIndex);
             return value;
-        } else {
+        }
+        else {
             tableIndex = whichTable(rowIndex, columnIndex);
             if (rowIndex == 9 || rowIndex == 6 || rowIndex == 3) {
                 rowIndex = 3;

@@ -1,7 +1,8 @@
 package sudoku;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +15,14 @@ public class TableTest{
     public void testTheConstructor(){
        Table test = new Table();
 
-       Assertions.assertEquals(0,test.squares[4].value);
+       assertEquals(0,test.squares[4].value);
     }
 
     @Test
     public void testGetSquaresMethod(){
         Table test = new Table();
 
-        Assertions.assertEquals(0, test.getSquares()[3].getValue());
+        assertEquals(0, test.getSquares()[3].getValue());
     }
 
 
@@ -54,9 +55,9 @@ public class TableTest{
         row2 = table.getRow(2);
         row3 = table.getRow(3);
 
-        Assertions.assertEquals(pattern.get(1).getValue(),row1.get(1).getValue());
-        Assertions.assertEquals(pattern.get(4).getValue(),row2.get(1).getValue());
-        Assertions.assertEquals(pattern.get(8).getValue(),row3.get(2).getValue());
+        assertEquals(pattern.get(1).getValue(),row1.get(1).getValue());
+        assertEquals(pattern.get(4).getValue(),row2.get(1).getValue());
+        assertEquals(pattern.get(8).getValue(),row3.get(2).getValue());
 
 
 
@@ -92,9 +93,9 @@ public class TableTest{
         column2 = table.getColumn(2);
         column3 = table.getColumn(3);
 
-        Assertions.assertEquals(pattern.get(3).getValue(),column1.get(1).getValue());
-        Assertions.assertEquals(pattern.get(1).getValue(),column2.get(0).getValue());
-        Assertions.assertEquals(pattern.get(8).getValue(),column3.get(2).getValue());
+        assertEquals(pattern.get(3).getValue(),column1.get(1).getValue());
+        assertEquals(pattern.get(1).getValue(),column2.get(0).getValue());
+        assertEquals(pattern.get(8).getValue(),column3.get(2).getValue());
 
     }
 
@@ -103,7 +104,7 @@ public class TableTest{
             Table test = new Table();
 
             test.squares[1].setValue(1);
-            Assertions.assertFalse(test.checkPossibilityInTable(test.squares,1));
+            assertFalse(test.checkPossibilityInTable(test.squares,1));
 
     }
 
@@ -112,9 +113,9 @@ public class TableTest{
 
         Table test = new Table();
 
-        Assertions.assertEquals(2,test.setValue(2,1,2));
-        Assertions.assertEquals(0,test.setValue(2,1,1));
-        Assertions.assertEquals(3,test.setValue(3,1,1));
+        assertEquals(2,test.setValue(2,1,2));
+        assertEquals(0,test.setValue(2,1,1));
+        assertEquals(3,test.setValue(3,1,1));
     }
 
 
