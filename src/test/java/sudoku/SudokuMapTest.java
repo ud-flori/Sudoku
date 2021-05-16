@@ -30,6 +30,7 @@ public class SudokuMapTest {
         assertEquals(true,test.equals(test));
         SudokuMap test2 = new SudokuMap("example","example","example",new int[9][9]);
         assertNotNull(test2);
+        assertEquals(false,test.canEqual(SudokuMap));
     }
 
 

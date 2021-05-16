@@ -20,7 +20,6 @@ import javafx.scene.text.Font;
 import persistence.DataHandler;
 import sudoku.Sudoku;
 import sudoku.SudokuMap;
-import javax.inject.Inject;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -30,10 +29,6 @@ import java.util.TimerTask;
  * The main controller of the game.
  */
 public class SudokuController {
-
-
-    @Inject
-    private FXMLLoader fxmlLoader;
 
     @FXML
     private String username;
@@ -59,10 +54,8 @@ public class SudokuController {
     @FXML
     Button startButton;
 
-    boolean gameIsRunning = false;
     Sudoku sudoku;
     ObjectMapper objectmapper = new ObjectMapper();
-    Boolean isGameWon = false;
     DataHandler handler;
     String map;
     long start_time;
@@ -96,8 +89,8 @@ public class SudokuController {
     }
 
     /**
-     * Generate TextField objects dinamically to represent 9x9 table.
-     * @throws IOException
+     * Generate TextField objects dynamically to represent 9x9 table.
+     * @throws IOException Exception for file handling.
      */
     @FXML
     public void startGame() throws IOException {
@@ -109,18 +102,16 @@ public class SudokuController {
         timer.scheduleAtFixedRate(new TimerTask(){
             @Override
             public void run(){
-                Platform.runLater(() -> {
-                    timerContent.setText(getTimerStringValue());
-                });
+                Platform.runLater(() -> timerContent.setText(getTimerStringValue()));
             }
             },0,1000);
-        logger.info("The player choosed "+map+" level.");
+        logger.info("The player chosen "+map+" level.");
         startButton.setDisable(true);
     }
 
     /**
      * Open the scoreboard.
-     * @param e
+     * @param e Parameter of the event call.
      */
     @FXML
     public void switchToScoreBoard(ActionEvent e){
@@ -141,13 +132,13 @@ public class SudokuController {
 
     /**
      * Handle player name.
-     * @param username
+     * @param username The name of the user.
      */
     public void initdata (String username) {
         try{
             this.username = username;
             usernameLabel.setText("Welcome " + this.username);
-            logger.info("Player name succesfully initalized.");
+            logger.info("Player name successfully initialized.");
         }
         catch(NullPointerException e){
             logger.error(e);
@@ -180,7 +171,7 @@ public class SudokuController {
     }
 
 
-    private void initializeTable(SudokuMap map) throws IOException {
+    private void initializeTable(SudokuMap map){
 
         String style = "-fx-border-style: solid; -fx-border-style: solid;";
         for (int i = 0; i < 9; i++) {

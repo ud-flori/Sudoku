@@ -67,7 +67,7 @@ public class Table {
      * @param value The value need to be checked.
      * @param rowIndex The index of the row.
      * @param columnIndex The index of the column
-     * @return boolean value if the value can be placed or not.
+     * @return true if the value can be placed.
      */
     private boolean checkPossibility(int value, int rowIndex, int columnIndex) {
         List<Square> row;
@@ -83,7 +83,7 @@ public class Table {
      * Check the possibility in row if the value can be placed on the table.
      * @param list List with the values of the row.
      * @param value The value which needs to be checked.
-     * @return boolean about the possibility.
+     * @return true if the value can be placed.
      */
     private boolean checkPossibilityInRow(List<Square> list,int value) {
         Square[] row = new Square[3];
@@ -100,7 +100,7 @@ public class Table {
      * Check the possibility in column if the value can be placed on the table.
      * @param list List with the values of the column.
      * @param value The value which needs to be checked.
-     * @return boolean about the possibility.
+     * @return true if the value can be placed.
      */
     private boolean checkPossibilityInColumn(List<Square> list,int value) {
         Square[] column = new Square[3];
@@ -117,7 +117,7 @@ public class Table {
      * Check the values possibility in table.
      * @param table The field for checking.
      * @param value The checked value.
-     * @return boolean about the possibility
+     * @return true if the value can be placed.
      */
     public boolean checkPossibilityInTable(Square[] table, int value){
         for(int i=0;i<9;i++){

@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 
 /**
- * The class represents the Main Menu of the game
+ * The class represents the Main Menu of the game.
  */
 public class LaunchController {
 
@@ -29,9 +29,9 @@ public class LaunchController {
 
 
     /**
-     * Event starts with the application.
-     * @param actionEvent
-     * @throws IOException
+     * Event handler to handle input on the main menu.
+     * @param actionEvent The event call argument.
+     * @throws IOException Exception for file handling.
      */
     public void startAction(ActionEvent actionEvent) throws IOException {
         if ((username.getText().isEmpty() || username.getText().getBytes().length > 25)) {

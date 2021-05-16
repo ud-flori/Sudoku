@@ -14,6 +14,6 @@ public class SudokuMap {
     private String title;
     private String author;
     private String version;
-    public int[][] matrix;
+    private int[][] matrix;
 
 }

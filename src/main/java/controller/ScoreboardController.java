@@ -44,7 +44,7 @@ public class ScoreboardController {
 
     /**
      * Initialize the scoreboard table.
-     * @throws IOException
+     * @throws IOException Exception for file handling.
      */
     @FXML
     private void initialize() throws IOException {
@@ -70,7 +70,7 @@ public class ScoreboardController {
 
     /**
      * Starts new game session.
-     * @param e
+     * @param e parameter of the event call.
      */
     @FXML
     public void startNewGame(ActionEvent e){

@@ -1,22 +1,12 @@
 package persistence;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
-import sudoku.SudokuMap;
-
-import java.io.DataOutput;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Objects;
 
 /**
  * This class give interface between Java and JSON files.
@@ -26,7 +16,7 @@ public class DataHandler {
     ObjectMapper handler;
 
     /**
-     * The constructor which creates Jackson objectmapper.
+     * The constructor which creates Jackson object mapper.
      */
     public DataHandler(){
         this.handler = new ObjectMapper();
@@ -34,10 +24,10 @@ public class DataHandler {
 
     /**
      * Set the data to an object and export to JSON file.
-     * @param player
-     * @param map
-     * @param time
-     * @throws IOException
+     * @param player The player name.
+     * @param map The chosen map.
+     * @param time The elapsed time.
+     * @throws IOException Exception for file handling
      */
     public void setData(String player, String map, String time) throws IOException {
 
@@ -51,9 +41,9 @@ public class DataHandler {
     }
 
     /**
-     * Return List with Data objects.
-     * @return List
-     * @throws IOException
+     * Gets the JSON data files.
+     * @return List with data Objects.
+     * @throws IOException Exception for file handling.
      */
     public List<FinishData> getData() throws IOException {
 
@@ -62,7 +52,7 @@ public class DataHandler {
         List<FinishData> list = new ArrayList<>();
 
             actual = new File("assets/");
-            for( File f : actual.listFiles()) {
+            for( File f : Objects.requireNonNull(actual.listFiles())) {
                 if(f.getName().matches(".+\\.json$")) {
                     list.add(handler.readValue(new File(String.valueOf(f)), FinishData.class));
                 }

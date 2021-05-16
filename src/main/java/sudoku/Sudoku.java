@@ -1,13 +1,10 @@
 package sudoku;
 
-import com.google.common.annotations.VisibleForTesting;
-
 import java.util.ArrayList;
-
 import java.util.List;
 
 /**
- *  Sudoku Class implement Table Objects.
+ *  Sudoku Class implements Table Objects.
  */
 
 public class Sudoku{
@@ -28,7 +25,7 @@ public class Sudoku{
 
     /**
      * Check the game if its ended.
-     * @return booelan
+     * @return true if the game has ended.
      */
     public boolean isGameWon(){
         for(int i=0;i<9;i++){
@@ -43,9 +40,9 @@ public class Sudoku{
     }
 
     /**
-     * Get column by Index
-     * @param columnIndex
-     * @return Square[]
+     * Get column by Index.
+     * @param columnIndex The index of the column.
+     * @return Array with the squares.
      */
     private Square[] getColumn(int columnIndex){
         List<Square> column = new ArrayList<>();
@@ -64,9 +61,9 @@ public class Sudoku{
         return returnValue;
     }
     /**
-     * Get row by Index
-     * @param rowIndex
-     * @return Square[]
+     * Get row by Index.
+     * @param rowIndex The index of the row.
+     * @return Array with the squares.
      */
     private Square[] getRow(int rowIndex){
         List<Square> row = new ArrayList<>();
@@ -102,7 +99,7 @@ public class Sudoku{
      * @param value The value which needs to be placed.
      * @param rowIndex The index of the row.
      * @param columnIndex The index of the column.
-     * @return boolean about the possibility.
+     * @return true if the value can be placed on the table.
      */
     private boolean isValid(int value, int rowIndex, int columnIndex){
         Square[] row;
@@ -163,7 +160,7 @@ public class Sudoku{
      * Check the possibility in row if the value can be placed on the table.
      * @param value The value which needs to be checked.
      * @param row The row which needs to be checked.
-     * @return boolean about the possibility.
+     * @return true if the value can be placed on the table.
      */
     private boolean checkRow(int value, Square[] row) {
 
@@ -180,7 +177,7 @@ public class Sudoku{
      * Check the possibility in column if the value can be placed on the table.
      * @param value The value which needs to be checked.
      * @param column The column which needs to be checked.
-     * @return boolean about the possibility.
+     * @return true if the value can be placed on the table.
      */
     private boolean checkColumn(int value, Square[] column) {
 
@@ -198,7 +195,7 @@ public class Sudoku{
      * @param value The value which needs to be checked.
      * @param row The row which needs to be checked.
      * @param column The column which needs to be checked.
-     * @return boolean about the possibility.
+     * @return true if the value can be placed on the table.
      */
     private boolean checkTable(int value, int row, int column) {
         int table = whichTable(row,column);

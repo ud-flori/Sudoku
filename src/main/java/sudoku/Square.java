@@ -1,7 +1,7 @@
 package sudoku;
 
 /**
- * The Square Class represents one cube in sudoku table
+ * The Square Class represents one cube in sudoku table.
  */
 public class Square {
 
@@ -19,7 +19,7 @@ public class Square {
     }
 
     /**
-     * Sets the {@code value} field's value to the parameter.
+     * Sets the value field's value to the parameter.
      */
     public Square(int value){
         if (value > 0 && value < 10) {
